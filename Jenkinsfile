@@ -119,5 +119,3 @@ pipeline {
         }
     }
 }
-
-gateway-service/prd/gateway-service-deploy.yml
