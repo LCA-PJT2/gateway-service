@@ -101,12 +101,12 @@ pipeline {
                         # 1. 저장소 clone
                         rm -rf app-config
                         git clone https://${GITHUB_TOKEN}@github.com/LCA-PJT2/app-config.git
-                        cd app-config
 
                         # 2. image 태그 업데이트
-                        sed -i 's|image: ${DOCKER_REGISTRY}/${APP_NAME}:.*|image: ${DOCKER_REGISTRY}/${APP_NAME}:${APP_VERSION}|' gateway-service/prd/gateway-service-deploy.yml
+                        sed -i '' 's|image: ${DOCKER_REGISTRY}/${APP_NAME}:.*|image: ${DOCKER_REGISTRY}/${APP_NAME}:${APP_VERSION}|' app-config/gateway-service/prd/gateway-service-deploy.yml
 
                         # 3. Git 설정 및 커밋
+                        cd app-config
                         git config user.name "minju26"
                         git config user.email "mjalswn26@gmail.com"
                         git add gateway-service/prd/gateway-service-deploy.yml
@@ -117,6 +117,5 @@ pipeline {
                 }
             }
         }
-
     }
 }
