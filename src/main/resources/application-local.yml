@@ -1,2 +1,6 @@
 server:
   port: 8080
+
+jwt:
+  header: Authorization
+  secret-key: AADfaskllew3skllew32dsfasdTG764G2dsfasdTG764GDfaskllew3skllew32dsfasdTG764G2ddskllew32dsfasdTG764G
