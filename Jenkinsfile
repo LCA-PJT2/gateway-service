@@ -84,7 +84,6 @@ pipeline {
             }
         }
 
-        // --- 여기서부터 수정 필요 ---
         stage('Update Deployment Manifest & Git Push') {
             steps {
                 script {
