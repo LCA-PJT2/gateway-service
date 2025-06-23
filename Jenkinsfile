@@ -73,26 +73,18 @@ pipeline {
             }
         }
 
-        stage('Build Docker Image') {
-            steps {
-                script {
-                    docker.build "${DOCKER_IMAGE_NAME}"
-                }
-            }
-        }
-
         stage('Push Docker Image') {
             steps {
                 script {
                     docker.withRegistry("", DOCKERHUB_CREDENTIAL) {
-                        docker.image("${DOCKER_IMAGE_NAME}").push()
+                        sh "docker buildx build --platform linux/amd64,linux/arm64 -t ${DOCKER_IMAGE_NAME} --push ."
                     }
-
                     sh "docker rmi ${DOCKER_IMAGE_NAME}"
                 }
             }
         }
 
+        // --- 여기서부터 수정 필요 ---
         stage('Update Deployment Manifest & Git Push') {
             steps {
                 script {
