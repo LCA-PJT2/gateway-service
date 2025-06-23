@@ -43,6 +43,7 @@ public class WebSecurityConfig {
                 )
 
                 .authorizeHttpRequests(registry -> registry
+                                .requestMatchers("/api/test/**").authenticated()
                                 .anyRequest().permitAll()
 
 //                        // 회원가입, 로그인
