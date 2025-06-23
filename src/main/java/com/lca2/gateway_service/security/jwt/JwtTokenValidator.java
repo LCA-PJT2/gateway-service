@@ -74,6 +74,7 @@ public class JwtTokenValidator {
                     .parseSignedClaims(token)
                     .getPayload();
         } catch (Exception e) {
+            log.error(e.getMessage());
             return null;
         }
 
