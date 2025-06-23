@@ -9,12 +9,14 @@ import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import javax.crypto.SecretKey;
 import java.util.ArrayList;
 import java.util.Date;
 
+@Slf4j
 @Component
 @RequiredArgsConstructor
 public class JwtTokenValidator {
@@ -39,18 +41,22 @@ public class JwtTokenValidator {
 
         final Claims claims = this.verifyAndGetClaims(token);
         if (claims == null) {
+            log.error("Invalid token1");
             return null;
         }
 
         Date expirationDate = claims.getExpiration();
         if (expirationDate == null || expirationDate.before(new Date())) {
+            log.error("Invalid token2");
             return null;
         }
 
         userId = claims.get("userId", String.class);
+        log.info("userId: {}", userId);
 
         String tokenType = claims.get("tokenType", String.class);
         if (!"access".equals(tokenType)) {
+            log.error("Invalid token3");
             return null;
         }
 
@@ -88,6 +94,7 @@ public class JwtTokenValidator {
     public String getToken(HttpServletRequest request) {
         String authHeader = getAuthHeaderFromHeader(request);
         if (authHeader != null && authHeader.startsWith("Bearer")) {
+            log.info("Bearer token found");
             return authHeader.substring(7);
         }
 
