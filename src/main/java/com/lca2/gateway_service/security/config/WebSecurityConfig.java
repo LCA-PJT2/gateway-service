@@ -43,8 +43,10 @@ public class WebSecurityConfig {
                 )
 
                 .authorizeHttpRequests(registry -> registry
-                                .requestMatchers("/api/test/**").authenticated()
-                                .anyRequest().permitAll()
+                                .requestMatchers(HttpMethod.GET, "/api/comment/v1/{postId}").permitAll()
+                                .requestMatchers(HttpMethod.GET, "/api/post/v1/posts").permitAll()
+                                .requestMatchers(HttpMethod.GET, "/api/post/v1/{postId}").permitAll()
+                                .anyRequest().authenticated()
 
 //                        // 회원가입, 로그인
 //                        .requestMatchers("/user/signup", "/user/login").permitAll()
