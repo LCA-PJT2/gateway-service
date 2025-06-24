@@ -44,20 +44,17 @@ public class WebSecurityConfig {
 
                 .authorizeHttpRequests(registry -> registry
                         //게시글, 댓글
-                                .requestMatchers(HttpMethod.GET, "/api/comment/v1/{postId}").permitAll()
-                                .requestMatchers(HttpMethod.GET, "/api/post/v1/posts").permitAll()
-                                .requestMatchers(HttpMethod.GET, "/api/post/v1/{postId}").permitAll()
-                                .requestMatchers(HttpMethod.GET, "/api/test/healthy").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/comment/v1/{postId}").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/post/v1/posts").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/post/v1/{postId}").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/test/healthy").permitAll()
                         //AI
-                                .requestMatchers(HttpMethod.POST, "/api/question/v1/ai").permitAll()
-                                .anyRequest().authenticated()
+                        .requestMatchers(HttpMethod.POST, "/api/question/v1/ai").permitAll()
 
-//                        // 회원가입, 로그인
-//                        .requestMatchers("/user/signup", "/user/login").permitAll()
-//                        .requestMatchers("/api/questions").permitAll()
-//                        .requestMatchers("/profile").permitAll()
-//                        .requestMatchers("/questions/**").permitAll()
+                        // 회원가입, 로그인
+                        .requestMatchers("/user/signup", "/user/login").permitAll()
 
+                        .anyRequest().authenticated()
                 );
 
         return http.build();
