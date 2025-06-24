@@ -46,6 +46,7 @@ public class WebSecurityConfig {
                                 .requestMatchers(HttpMethod.GET, "/api/comment/v1/{postId}").permitAll()
                                 .requestMatchers(HttpMethod.GET, "/api/post/v1/posts").permitAll()
                                 .requestMatchers(HttpMethod.GET, "/api/post/v1/{postId}").permitAll()
+                                .requestMatchers(HttpMethod.GET, "/api/test/healthy").permitAll()
                                 .anyRequest().authenticated()
 
 //                        // 회원가입, 로그인
