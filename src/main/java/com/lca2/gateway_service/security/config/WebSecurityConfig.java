@@ -43,10 +43,13 @@ public class WebSecurityConfig {
                 )
 
                 .authorizeHttpRequests(registry -> registry
+                        //게시글, 댓글
                                 .requestMatchers(HttpMethod.GET, "/api/comment/v1/{postId}").permitAll()
                                 .requestMatchers(HttpMethod.GET, "/api/post/v1/posts").permitAll()
                                 .requestMatchers(HttpMethod.GET, "/api/post/v1/{postId}").permitAll()
                                 .requestMatchers(HttpMethod.GET, "/api/test/healthy").permitAll()
+                        //AI
+                                .requestMatchers(HttpMethod.POST, "/api/question/v1/ai").permitAll()
                                 .anyRequest().authenticated()
 
 //                        // 회원가입, 로그인
@@ -54,13 +57,6 @@ public class WebSecurityConfig {
 //                        .requestMatchers("/api/questions").permitAll()
 //                        .requestMatchers("/profile").permitAll()
 //                        .requestMatchers("/questions/**").permitAll()
-//
-//                        // 게시글, 댓글 관련 GET 요청
-//                        .requestMatchers(HttpMethod.GET, "/comm").permitAll()
-//                        .requestMatchers(HttpMethod.GET, "/comm/{postId}").permitAll()
-//                        .requestMatchers(HttpMethod.GET, "/comm/{postId}/comments").permitAll()
-//
-//                        .anyRequest().authenticated()
 
                 );
 
