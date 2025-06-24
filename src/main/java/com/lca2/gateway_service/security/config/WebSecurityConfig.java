@@ -48,11 +48,15 @@ public class WebSecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/api/post/v1/posts").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/post/v1/{postId}").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/test/healthy").permitAll()
+
                         //AI
                         .requestMatchers(HttpMethod.POST, "/api/question/v1/ai").permitAll()
 
                         // 회원가입, 로그인
                         .requestMatchers("/user/signup", "/user/login").permitAll()
+
+                        .requestMatchers(HttpMethod.GET, "/api/test/auth/healthy/route").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/test/auth/healthy/auth").authenticated()
 
                         .anyRequest().authenticated()
                 );
