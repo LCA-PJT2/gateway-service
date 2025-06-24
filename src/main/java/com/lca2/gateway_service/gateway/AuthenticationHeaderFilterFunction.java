@@ -16,17 +16,17 @@ public class AuthenticationHeaderFilterFunction {
             Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
             if (authentication != null && authentication.isAuthenticated()) {
-                log.debug("Authentication is present and authenticated."); // debug 레벨
+                log.debug("Authentication is present and authenticated.");
                 Object principal = authentication.getPrincipal();
 
-                if (principal instanceof UserPrincipal userPrincipal) { // UserPrincipal은 당신의 인증 Principal 클래스입니다.
-                    log.debug("Principal is UserPrincipal. User ID: {}", userPrincipal.userId()); // debug 레벨
+                if (principal instanceof UserPrincipal userPrincipal) {
+                    log.debug("Principal is UserPrincipal. User ID: {}", userPrincipal.userId());
                     requestBuilder.header("X-Auth-UserId", userPrincipal.userId());
                 } else {
-                    log.warn("Principal is not UserPrincipal. Actual type: {}", principal.getClass().getName()); // warn 레벨
+                    log.warn("Principal is not UserPrincipal. Actual type: {}", principal.getClass().getName());
                 }
             } else {
-                log.warn("Authentication is null or not authenticated. No X-Auth-UserId header added."); // warn 레벨
+                log.warn("Authentication is null or not authenticated. No X-Auth-UserId header added.");
             }
 
             return requestBuilder.build();
