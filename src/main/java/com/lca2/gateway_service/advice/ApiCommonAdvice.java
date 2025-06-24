@@ -52,7 +52,7 @@ public class ApiCommonAdvice {
     public ApiResponseDto<String> handleNoResourceFoundException(NoResourceFoundException e) {
         return ApiResponseDto.createError(
                 "NoResource",
-                "리소스를 찾을 수 없습니다.\n" + e.getMessage() + Arrays.toString(e.getStackTrace())
+                e.getMessage()
         );
     }
 
@@ -61,7 +61,7 @@ public class ApiCommonAdvice {
     public ApiResponseDto<String> handleInsufficientAuthenticationException(InsufficientAuthenticationException e) {
         return ApiResponseDto.createError(
                 "Unauthenticated",
-                "인증되지 않았습니다.");
+                e.getMessage());
     }
 
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
