@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.resource.NoResourceFoundException;
 
+import java.util.Arrays;
+
 @Slf4j
 @Order(value = 1)
 @RestControllerAdvice
@@ -50,7 +52,7 @@ public class ApiCommonAdvice {
     public ApiResponseDto<String> handleNoResourceFoundException(NoResourceFoundException e) {
         return ApiResponseDto.createError(
                 "NoResource",
-                "리소스를 찾을 수 없습니다."
+                "리소스를 찾을 수 없습니다.\n" + e.getMessage() + Arrays.toString(e.getStackTrace())
         );
     }
 
