@@ -43,14 +43,15 @@ public class WebSecurityConfig {
                 )
 
                 .authorizeHttpRequests(registry -> registry
-                        //게시글, 댓글
+                        //Post, Comment
                         .requestMatchers(HttpMethod.GET, "/api/comment/v1/{postId}").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/post/v1/posts").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/post/v1/{postId}").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/test/healthy").permitAll()
 
-                        //AI
+                        //Question
                         .requestMatchers(HttpMethod.POST, "/api/question/v1/ai").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/question/v1").permitAll()
 
                         // 회원가입, 로그인
                         .requestMatchers("/user/signup", "/user/login").permitAll()
